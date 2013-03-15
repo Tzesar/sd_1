@@ -1,0 +1,4 @@
+http://blog.pontt.com/json-con-java/introduccion-java-y-json-primera-parte-con-ejemplo/
+https://code.google.com/p/google-gson/
+http://jc-mouse.blogspot.com/2009/12/anadirinstalar-nuevas-librerias.html
+http://www.adictosaltrabajo.com/tutoriales/tutoriales.php?pagina=GsonJavaJSON
