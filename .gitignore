@@ -1,0 +1,3 @@
+*.a #Ignora los archivos que terminan en .a
+*.o #Ignora los archivos que terminan en .o
+*~  #Ignora los archivos que terminan en ~
