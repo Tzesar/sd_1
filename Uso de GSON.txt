@@ -1,0 +1,3 @@
+Para poder usar GSON se debe descomprimir gson-2.2.2.jar que está en la carpeta GSON, una carpeta gson-2.2.2 les aparecerá;
+a su vez dentro de esa carpeta está la carpeta com, esa es la carpeta que debe ponerse en el mismo directorio que el
+archivo fuente que usa la librería gson. Al hacer esto el comando javac *archivo*.java va a funcionar correctamente.
