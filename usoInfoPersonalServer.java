@@ -7,7 +7,7 @@ public class usoInfoPersonalServer {
 
     public static void main(String[] a) throws Exception {
 
-        // Datos necesario
+        // Datos necesarios
         String direccionServidor = "127.0.0.1";
         String ci = "0";
 

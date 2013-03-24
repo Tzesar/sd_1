@@ -21,6 +21,8 @@ public class infoPersonalHilo extends Thread{
 	
 	// Codigo que ejecuta el hilo
 	public void run(){
+		System.out.println("\tHilo iniciado");
+		
 		byte[] sendData = new byte[250];
 		DatagramPacket response;
 	
@@ -36,7 +38,8 @@ public class infoPersonalHilo extends Thread{
 		
 		// Si los datos recibidos no son correctos devuelve un codigo de error 2
 		// Este mensaje sera modificado con datos verdaderos
-		response = new DatagramPacket("2".getBytes(), 1, IPAddress, port);
+		sendData = ("2;0;").getBytes();
+		response = new DatagramPacket(sendData, sendData.length, IPAddress, port);
 		
 		try{
 			int ci = Integer.parseInt(datoRecibido);
@@ -55,26 +58,35 @@ public class infoPersonalHilo extends Thread{
 				datosPersonales = new infoPersonal(busqueda);
 				
 				// Guarda los datos correctos en sendData y prepara el paquete de respuesta
-				sendData = ("0" + datosPersonales.toJSON() ).getBytes();
+				String datosEnJSON = datosPersonales.toJSON();
+				// Formato de paquete respuesta
+				// <TIPO_DE_PAQUETE>;<LONGITUD_DE_LOS_DATOS>;<DATOS_EN_FORMATO_JSON>
+				// TIPO_DE_PAQUETE puede tomar los valores:
+				//  0 = paquete normal
+				//  1 = paquete sin datos (no se encontro el registro correspondiente al pedido recibido)
+				//  2 = paquete informativo (ocurrio un error inesperado)
+				sendData = ("0;"+datosEnJSON.length()+";"+ datosEnJSON ).getBytes();
 				response = new DatagramPacket(sendData, sendData.length, IPAddress, port);
 			}else{
 				// Si no se encuentran los datos se devuelve un codigo de error 1
-				response = new DatagramPacket("1".getBytes(), 1, IPAddress, port);
+				sendData = ("1;0;").getBytes();
+				response = new DatagramPacket(sendData, sendData.length, IPAddress, port);
 			}	
 		}
 		catch(NumberFormatException ex){
-			System.out.println("Dato Recibido erroneo ["+datoRecibido+"]");
+			System.out.println("\tDato Recibido erroneo ["+datoRecibido+"]");
 		}
 		catch(Exception e){
-			System.out.println("Error inesperado");
+			System.out.println("\tError inesperado");
 		}
 		
 		// Envia la respuesta, que puede ser positiva o negativa
 		try{
 			socket.send(response);
+			System.out.println("\tFinalizando hilo");
 		}
 		catch(IOException e){
-			System.out.println("Error al enviar la respuesta");
+			System.out.println("\tError al enviar la respuesta");
 		}
 	}
 	

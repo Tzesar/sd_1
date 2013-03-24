@@ -14,7 +14,7 @@ public class infoPersonalServer{
 		
 		try {
           	DatagramSocket serverSocket = new DatagramSocket(puerto);
-          	System.out.println("Servidor en ejecucion");
+          	System.out.println("Servidor corriendo\nPuerto:"+puerto);
 
 	          while (true){
 				byte[] receiveData = new byte[7];
@@ -23,7 +23,6 @@ public class infoPersonalServer{
                 	
                 	// Comprueba si el mensaje no es un comando para apagar el servidor
                 	String mensaje = new String(request.getData());
-                	//mensaje = mensaje.substring(0,mensaje.length()-2);
                 	if ( mensaje.equals("termina") ){
 					serverSocket.close();
 					System.out.println("Cerrando el servidor");
@@ -31,7 +30,7 @@ public class infoPersonalServer{
                 	}
                 	
                 	new infoPersonalHilo(serverSocket, request).start();
-                	System.out.println("Pedido en proceso");
+                	System.out.println("\tPedido en proceso");
             	}
         	}catch (SocketException ex){
             	System.out.println("Puerto UDP " + puerto +" esta ocupado.");
