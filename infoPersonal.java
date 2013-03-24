@@ -2,8 +2,11 @@
  * Clase que establece la estructura de la informacion personal
  * proveida por el servidor infoPersonalServer
  */
- 
+
 import java.util.Scanner;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import java.lang.reflect.Type;
  
 public class infoPersonal{
 	private int ci;
@@ -12,94 +15,99 @@ public class infoPersonal{
 	public infoPersonal( String datos ) throws NullPointerException{
 		try{
 			Scanner scan = new Scanner(datos).useDelimiter(";");
-			ci = scan.nextInt();
-			nombre = scan.next();
-			apellido = scan.next();
-			estado = scan.next();
-			fNac = scan.next();
-			estCivil = scan.next();
-			ciuNatal = scan.next();
-			ciuActual = scan.next();
-			profesion = scan.next();
+			this.ci = scan.nextInt();
+			this.nombre = scan.next();
+			this.apellido = scan.next();
+			this.estado = scan.next();
+			this.fNac = scan.next();
+			this.estCivil = scan.next();
+			this.ciuNatal = scan.next();
+			this.ciuActual = scan.next();
+			this.profesion = scan.next();
 		}catch(NullPointerException e){
 			System.out.println("Parametros vacios.");
 			throw e;
 		}
 	}
 	
+	public String toJSON(){
+		Gson gson = new Gson();
+		return ( gson.toJson(this) );
+	}
+	
 	public int getCi(){
-		return ci;
+		return this.ci;
 	}
 	
 	public String getNombre(){
-		return nombre;
+		return this.nombre;
 	}
 	
 	public String getApellido(){
-		return apellido;
+		return this.apellido;
 	}
 	
 	public String getEstado(){
-		return estado;
+		return this.estado;
 	}
 	
 	public String getFNac(){
-		return fNac;
+		return this.fNac;
 	}
 	
 	public String getEstCivil(){
-		return estCivil;
+		return this.estCivil;
 	}
 	
 	public String getCiuNatal(){
-		return ciuNatal;
+		return this.ciuNatal;
 	}
 	
 	public String getCiuActual(){
-		return ciuActual;
+		return this.ciuActual;
 	}
 	
 	public String getProfesion(){
-		return profesion;
+		return this.profesion;
 	}
 	
 	public void setCi(int dato){
-		ci = dato;
+		this.ci = dato;
 	}
 	
 	public void setNombre(String dato){
-		nombre = dato;
+		this.nombre = dato;
 	}
 	
 	public void setApellido(String dato){
-		
+		this.apellido = dato;
 	}
 	
 	public void setEstado(String dato){
-		estado = dato;
+		this.estado = dato;
 	}
 	
 	public void setFNac(String dato){
-		fNac = dato;
+		this.fNac = dato;
 	}
 	
 	public void setEstCivil(String dato){
-		estCivil = dato;
+		this.estCivil = dato;
 	}
 	
 	public void setCiuNatal(String dato){
-		ciuNatal = dato;
+		this.ciuNatal = dato;
 	}
 	
 	public void setCiuActual(String dato){
-		ciuActual = dato;
+		this.ciuActual = dato;
 	}
 	
 	public void setProfesion(String dato){
-		profesion = dato;
+		this.profesion = dato;
 	}
 	
 	public String toString(){
-		return (Integer.toString(ci)+';'+nombre+';'+apellido+';'+estado+';'+fNac+';'+estCivil+';'+ciuNatal+';'+ciuActual+';'+profesion);
+		return (Integer.toString(this.ci)+';'+this.nombre+';'+this.apellido+';'+this.estado+';'+this.fNac+';'+this.estCivil+';'+this.ciuNatal+';'+this.ciuActual+';'+this.profesion);
 	}
 }

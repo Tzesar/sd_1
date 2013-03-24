@@ -1,3 +1,11 @@
+/*
+ * Simula una conexion con una base de datos, realmente trabaja con un archivo
+ * de acceso aleatorio.
+*/
+
+
+//package infoPersonal;
+
 import java.io.*;
 import java.util.Scanner;
 
@@ -5,19 +13,20 @@ public class DBConnector{
 
 	private RandomAccessFile in;
 	
-	public DBConnector ( String filename ) throws Exception {
+	public DBConnector ( String filename ) throws Exception{
 		try{
 			// Abre el archivo llamado filename
 			in = new RandomAccessFile(filename,"r");
-		}catch(FileNotFoundException e){
+		}
+		catch(FileNotFoundException e){
 			// Excepciones de apertura del archivo
 			System.out.println("No se pudo abrir crear la conexion con " + filename);
-			throw e;
-		}catch(SecurityException e){
+		}
+		catch(SecurityException e){
 			// Excepciones no contempladas
 			System.out.println("No se tienen permisos para leer el archivo " + filename);
-			throw e;
-		}catch(Exception e){
+		}
+		catch(Exception e){
 			throw e;
 		}
 		
@@ -54,7 +63,7 @@ public class DBConnector{
 		
 		// Mueve el puntero del archivo al comienzo y lee la primera linea
 		seek(0);
-		s = getLine();
+		s = this.getLine();
 		
 		while( match == null && s != null ){
 			// Crea el objeto scanner que obtiene los tokens del string s
@@ -65,7 +74,7 @@ public class DBConnector{
 				match = s;
 			}
 			// Lee la sgte linea
-			s = getLine();
+			s = this.getLine();
 			scan.close();
 		}
 		
@@ -79,6 +88,15 @@ public class DBConnector{
 		}
 		catch(IOException e){
 			throw new RuntimeException("Error al cerrar la conexion.");
+		}
+	}
+	
+	public long length(){
+		try{
+			return in.length();
+		}
+		catch(IOException e){
+			throw new RuntimeException("Error al acceder al archivo");
 		}
 	}
 }
