@@ -2,8 +2,6 @@
  * Hilo que atiende los pedidos de busqueda de datos personales
 */
 
-//package infoPersonal;
-
 import java.io.*;
 import java.net.*;
 import java.lang.Integer;
@@ -45,7 +43,7 @@ public class infoPersonalHilo extends Thread{
 			int ci = Integer.parseInt(datoRecibido);
 			
 			// Crea la conexion con la base de datos
-			DBConnector db = new DBConnector("nuevosDatos.bd");
+			DBConnector db = new DBConnector("BD/Datos.bd");
 			String busqueda;
 			infoPersonal datosPersonales;
 			
@@ -74,20 +72,20 @@ public class infoPersonalHilo extends Thread{
 			}	
 		}
 		catch(NumberFormatException ex){
-			System.out.println("\tDato Recibido erroneo ["+datoRecibido+"]");
+			System.out.println("\t\tDato Recibido erroneo ["+datoRecibido+"]");
 		}
 		catch(Exception e){
-			System.out.println("\tError inesperado");
+			System.out.println("\t\tError inesperado");
 		}
 		
 		// Envia la respuesta, que puede ser positiva o negativa
 		try{
 			socket.send(response);
-			System.out.println("\tFinalizando hilo");
 		}
 		catch(IOException e){
-			System.out.println("\tError al enviar la respuesta");
+			System.out.println("\t\tError al enviar la respuesta");
 		}
+		System.out.println("\tFinalizando hilo");
 	}
 	
 	private String resolverPedido( String pedido ){
@@ -101,4 +99,3 @@ public class infoPersonalHilo extends Thread{
 		return salida;
 	}
 }
-

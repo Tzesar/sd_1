@@ -15,12 +15,11 @@ public class centralServer{
 		
 		try {
 			serverSocket = new ServerSocket(9900);
-			System.out.println("Servidor corriendo");
+			System.out.println("Servidor central proxy corriendo\nPuerto:9900");
 		} catch (IOException e) {
 			System.err.println("No se puede abrir el puerto: 9900.");
 			System.exit(1);
 		}
-		System.out.println("Puerto:9900");
 	
 		while (listening) {
 			new centralServerHilo(serverSocket.accept()).start();

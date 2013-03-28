@@ -12,6 +12,18 @@ public class infoPersonal{
 	private int ci;
 	private String nombre, apellido, estado, fNac, estCivil, ciuNatal, ciuActual, profesion;
 	
+	public infoPersonal( ){
+		this.ci = 0;
+		this.nombre = null;
+		this.apellido = null;
+		this.estado = null;
+		this.fNac = null;
+		this.estCivil = null;
+		this.ciuNatal = null;
+		this.ciuActual = null;
+		this.profesion = null;
+	}
+	
 	public infoPersonal( String datos ) throws NullPointerException{
 		try{
 			Scanner scan = new Scanner(datos).useDelimiter(";");
@@ -25,7 +37,7 @@ public class infoPersonal{
 			this.ciuActual = scan.next();
 			this.profesion = scan.next();
 		}catch(NullPointerException e){
-			System.out.println("Parametros vacios.");
+			System.out.println("\t\tParametros vacios.");
 			throw e;
 		}
 	}

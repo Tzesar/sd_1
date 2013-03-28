@@ -1,18 +1,18 @@
 /*
- * Servidor de informacion personal UDP
+ * Servidor de informacion de posicion UDP
  */
  
 import java.io.*;
 import java.net.*;
 import java.util.Scanner;
 
-public class infoPersonalServer{
+public class posicionServer{
 	public static void main( String[] args ) throws Exception{
-		int puerto = 9800;
+		int puerto = 9600;
 		
 		try {
           	DatagramSocket serverSocket = new DatagramSocket(puerto);
-          	System.out.println("Servidor de informacion personal corriendo\nPuerto:"+puerto);
+          	System.out.println("Servidor de Posicion corriendo\nPuerto:"+puerto);
 
 	          while (true){
 				byte[] receiveData = new byte[7];
@@ -27,7 +27,8 @@ public class infoPersonalServer{
 					break;
                 	}
                 	
-                	new infoPersonalHilo(serverSocket, request).start();
+                	new posicionHilo(serverSocket, request).start();
+                	System.out.println("\tPedido en proceso");
             	}
         	}catch (SocketException ex){
             	System.out.println("Puerto UDP " + puerto +" esta ocupado.");
