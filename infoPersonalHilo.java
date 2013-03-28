@@ -41,6 +41,7 @@ public class infoPersonalHilo extends Thread{
 		
 		try{
 			int ci = Integer.parseInt(datoRecibido);
+			System.out.println("Mensaje:"+ci);
 			
 			// Crea la conexion con la base de datos
 			DBConnector db = new DBConnector("BD/Datos.bd");
